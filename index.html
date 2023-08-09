@@ -11,15 +11,18 @@
     <div class="book-container">
         
     </div>
-    <button class="new-book">NEW BOOK</button>
+    <div class="button-container">
+        <button id="create-book" form="bookForm" type="submit" >SUBMIT</button>
+        <button class="new-book">NEW BOOK</button>
+    </div>
     <div id="book-input">
-        <form action="">
+        <form action="" id="bookForm">
             <label for="author-input">Author</label>
             <input type="text" id="author-input" name="author-input">
             <label for="title-input">Title:</label>
             <input type="text" name="title-input" id="title-input">
             <label for="num-pages">Number of Pages:</label>
-            <input type="text" name="num-pages" id="num-pages">
+            <input type="number" name="num-pages" id="num-pages">
             <label>Have you Read this book?</label>
             <div class="yes-option">
                 <input type="radio" name="has-read" id="has-read">
