@@ -4,9 +4,8 @@ const submitButton = document.querySelector('#create-book');
 const consoleLog = document.querySelector('.console-log');
 const bookContainer = document.querySelector('.book-container');
 
-//default the new book button to have no display style
+//default the form to have no display style
 document.getElementById('book-input').style.display = 'none'
-
 
 
 
@@ -14,26 +13,26 @@ document.getElementById('book-input').style.display = 'none'
 //Library Array
 let myLibrary = [];
 
-//Constructor for book objects
+//Object Constructor for book objects
 function book(author, title, numPages, isRead) {
     this.author = author;
     this.title = title;
     this.numPages = numPages;
     this.isRead = isRead;
 }
+
 //Book object function to add to library array
 function addBookToLibrary(array){
+    myLibrary.push(array);
+    console.log(myLibrary);
+
     const containerDiv = document.createElement('div');
     const authorDiv = document.createElement('div');
     const titleDiv = document.createElement('div');
     const numPagesDiv = document.createElement('div');
     const isReadDiv = document.createElement('div');
+    const isReadButton = document.createElement('button');
 
-
-
-    myLibrary.push(array);
-    console.log(myLibrary);
-    
     //container for text divs
     containerDiv.style.display ='flex';
     containerDiv.style.flexDirection = 'column';
@@ -41,31 +40,36 @@ function addBookToLibrary(array){
     containerDiv.style.height = '20vh';
     containerDiv.style.justifyContent = 'space-around';
     containerDiv.style.border = '1px solid blue';
+    //Text for isreadbutton
+    isReadButton.innerText = 'Read';
 
     for(let i=0; i< myLibrary.length; i++){
-        authorDiv.innerText = 'Author: ' + myLibrary[i].author;
-        titleDiv.innerText = 'Title: ' + myLibrary[i].title;
-        numPagesDiv.innerText = 'Num. of Pages ' + myLibrary[i].numPages;
-        isReadDiv.innerText = 'Have Read?: ' + myLibrary[i].isRead;
+        //text divs
+        authorDiv.innerText =  `Author: \n ${myLibrary[i].author}`;
+        titleDiv.innerText = `Title: \n ${myLibrary[i].title}`;
+        numPagesDiv.innerText = `Num. of Pages: \n ${myLibrary[i].numPages}`;
+        isReadDiv.innerText = `Have Read?: \n ${myLibrary[i].isRead ? 'Yes' : 'No'} `;
 
+        //Append for container and text divs
         containerDiv.appendChild(authorDiv);
         containerDiv.appendChild(titleDiv);
         containerDiv.appendChild(numPagesDiv);
         containerDiv.appendChild(isReadDiv);
         bookContainer.appendChild(containerDiv);
+        containerDiv.appendChild(isReadButton);
     }
+    
 
 
 }
 
 //test objects
-const hp = new book('jk Rowling', 'Hary P and stone', 200, true);
+const hp = new book('JK Rowling', 'Hary P and Stone', 200, true);
 const pj = new book('Rick Riordan', 'Percy Jackson', 250, false);
-const gg = new book('some dude', 'Greate Gatsby', 500, false);
-//test execution of function
-addBookToLibrary(pj);
+const gg = new book('Some Dude', 'Greate Gatsby', 500, false);
+//Testing confirms each iteration of the function for the book objects creates a new book div and using ...args on the function creates only one
 addBookToLibrary(hp);
-
+addBookToLibrary(pj);
 
 
 

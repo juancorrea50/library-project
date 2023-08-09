@@ -18,10 +18,11 @@ body{
     height: 5vh;
     width: 30vw;
     justify-content: center;
+    gap: 20px;
 }
 #book-input{
     position: absolute;
-    top: 170px;
+    top: 150px;
 
     justify-content: center;
     border: 1px solid black;
@@ -31,11 +32,14 @@ body{
 .book-container{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
     gap: 10px;
     border: 1px dotted blue;
     height: 20vh;
     width: 50vw;
+}
+button {
+    width: 90px;
 }
 form{
     display: flex;
