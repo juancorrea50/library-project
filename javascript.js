@@ -36,8 +36,9 @@ function addBookToLibrary(array){
     //container for text divs
     containerDiv.style.display ='flex';
     containerDiv.style.flexDirection = 'column';
+    containerDiv.style.padding = '1px'
     containerDiv.style.width = '10vw';
-    containerDiv.style.height = '20vh';
+    containerDiv.style.height = 'auto';
     containerDiv.style.justifyContent = 'space-around';
     containerDiv.style.border = '1px solid blue';
     //Text for isreadbutton
@@ -68,8 +69,15 @@ const hp = new book('JK Rowling', 'Hary P and Stone', 200, true);
 const pj = new book('Rick Riordan', 'Percy Jackson', 250, false);
 const gg = new book('Some Dude', 'Greate Gatsby', 500, false);
 //Testing confirms each iteration of the function for the book objects creates a new book div and using ...args on the function creates only one
-addBookToLibrary(hp);
-addBookToLibrary(pj);
+//Test complete refer to submit button to see book on submit
+
+
+
+
+
+
+
+
 
 
 
@@ -77,7 +85,7 @@ addBookToLibrary(pj);
 function submitInfo(event){
     event.preventDefault();
     consoleLog.innerText = 'preventDefault activated.';
-
+    addBookToLibrary(hp);
 }
 
 

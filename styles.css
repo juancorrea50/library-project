@@ -22,7 +22,7 @@ body{
 }
 #book-input{
     position: absolute;
-    top: 150px;
+    top: 10vh;
 
     justify-content: center;
     border: 1px solid black;
@@ -33,10 +33,10 @@ body{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 1vw;
     border: 1px dotted blue;
-    height: 20vh;
-    width: 50vw;
+    height: auto;
+    width: auto;
 }
 button {
     width: 90px;
