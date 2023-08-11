@@ -3,10 +3,26 @@ const newBookButton = document.querySelector('.new-book');
 const submitButton = document.querySelector('#create-book');
 const consoleLog = document.querySelector('.console-log');
 const bookContainer = document.querySelector('.book-container');
+//Form variables
+let authorCall = document.getElementById('author-input').value;
+let titleCall = document.getElementById('title-input').value;
+let numPageCall = document.getElementById('num-pages').value;
+//isRead variable entered into submit button book creation
+let isReadVar = false;
 
 //default the form to have no display style
 document.getElementById('book-input').style.display = 'none'
 
+//checks value of isread to assign variable
+function assignIsRead(){
+    let isReadRadio = document.querySelector('input[name ="has-read"]:checked');
+    if(isReadRadio.value == 'yes'){
+        isReadVar = true;
+    } else {
+        isReadVar = false;
+    }
+}
+console.log(isReadVar);
 
 
 
@@ -22,8 +38,12 @@ function book(author, title, numPages, isRead) {
 }
 
 //Book object function to add to library array
-function addBookToLibrary(array){
-    myLibrary.push(array);
+function addBookToLibrary(obj){
+    //Retrieve information from form
+    
+
+
+    myLibrary.push(obj);
     console.log(myLibrary);
 
     const containerDiv = document.createElement('div');
@@ -33,14 +53,15 @@ function addBookToLibrary(array){
     const isReadDiv = document.createElement('div');
     const isReadButton = document.createElement('button');
 
-    //container for text divs
+    //container for text divs styling
     containerDiv.style.display ='flex';
     containerDiv.style.flexDirection = 'column';
     containerDiv.style.padding = '1px'
-    containerDiv.style.width = '10vw';
+    containerDiv.style.width = '15vw';
     containerDiv.style.height = 'auto';
     containerDiv.style.justifyContent = 'space-around';
     containerDiv.style.border = '1px solid blue';
+    isReadButton.style.width = 'auto';
     //Text for isreadbutton
     isReadButton.innerText = 'Read';
 
@@ -59,10 +80,9 @@ function addBookToLibrary(array){
         bookContainer.appendChild(containerDiv);
         containerDiv.appendChild(isReadButton);
     }
-    
-
-
 }
+
+
 
 //test objects
 const hp = new book('JK Rowling', 'Hary P and Stone', 200, true);
@@ -81,11 +101,16 @@ const gg = new book('Some Dude', 'Greate Gatsby', 500, false);
 
 
 
+
 //Function to input submit button
 function submitInfo(event){
+    assignIsRead();
+    const newBook = new book(authorCall,titleCall,numPageCall,isReadVar);
     event.preventDefault();
-    consoleLog.innerText = 'preventDefault activated.';
-    addBookToLibrary(hp);
+    console.log(newBook);
+    
+    addBookToLibrary(newBook);
+    consoleLog.innerText = 'preventDefault activated. Console updated.';
 }
 
 
