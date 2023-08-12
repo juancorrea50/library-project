@@ -73,6 +73,8 @@ function addBookToLibrary(obj){
   
     //Create div housing book information and append a number to the index in the library array
     for(let i=0; i< myLibrary.length; i++){
+        //variable to assign book number in array
+        deleteButton.dataset.bookNum = i;
         //Puts text and information from object into the text divs
         authorDiv.innerText =  `Author: \n ${myLibrary[i].author}`;
         titleDiv.innerText = `Title: \n ${myLibrary[i].title}`;
@@ -88,10 +90,19 @@ function addBookToLibrary(obj){
         containerDiv.appendChild(buttonDiv);
         buttonDiv.appendChild(isReadButton);
         buttonDiv.appendChild(deleteButton);
+        console.log(deleteButton.dataset.bookNum);
     }
     
-    deleteButton.addEventListener('click', () => {
+    deleteButton.addEventListener('click', (e) => {
+        //Remove div from front end
         bookContainer.removeChild(containerDiv);
+        //Remove book object from array
+        for(let i =0; i< myLibrary.length; i++){
+            if(deleteButton.dataset.bookNum == i){
+                myLibrary.splice(i,1);
+            }
+        }
+        console.log(myLibrary);
     })
 }
 
