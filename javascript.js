@@ -7,8 +7,9 @@ const bookContainer = document.querySelector('.book-container');
 let authorCall = document.getElementById('author-input').value;
 let titleCall = document.getElementById('title-input').value;
 let numPageCall = document.getElementById('num-pages').value;
-//isRead variable entered into submit button book creation
+//isRead variable entered into submit button book creation and delete/isRead buttons
 let isReadVar = false;
+
 //Library Array
 let myLibrary = [];
 //default the form to have no display style
@@ -40,7 +41,7 @@ function addBookToLibrary(obj){
     myLibrary.push(obj);
     console.log(myLibrary);
 
-    //Create divs for each display of keys from the object
+    //Create divs for each display of keys from the object and the buttons to remove and change isRead
     const containerDiv = document.createElement('div');
     const authorDiv = document.createElement('div');
     const titleDiv = document.createElement('div');
@@ -59,15 +60,18 @@ function addBookToLibrary(obj){
     containerDiv.style.justifyContent = 'space-around';
     containerDiv.style.border = '1px solid blue';
     isReadButton.style.width = 'auto';
+
     //Styling for button container
     buttonDiv.style.display = 'flex';
     buttonDiv.style.gap = '40px';
     buttonDiv.style.alignItems = 'center';
     buttonDiv.style.justifyContent = 'center';
-    //Text for buttons
+    
+    //Text for delete and isRead buttons
     isReadButton.innerText = 'Read';
     deleteButton.innerText = 'Delete';
-
+  
+    //Create div housing book information and append a number to the index in the library array
     for(let i=0; i< myLibrary.length; i++){
         //Puts text and information from object into the text divs
         authorDiv.innerText =  `Author: \n ${myLibrary[i].author}`;
@@ -85,7 +89,12 @@ function addBookToLibrary(obj){
         buttonDiv.appendChild(isReadButton);
         buttonDiv.appendChild(deleteButton);
     }
+    
+    deleteButton.addEventListener('click', () => {
+        bookContainer.removeChild(containerDiv);
+    })
 }
+
 //Remove book from library
 function removeBookfromLibrary(event){
     console.log(event);
@@ -105,15 +114,16 @@ function submitInfo(event){
 
 
 
-
+//Adds books to library physically and on array
 submitButton.addEventListener('click', submitInfo);
+
 //click listener to pop form into html doc
 newBookButton.addEventListener('click', ()=> {
     dialogInput.style.display = 'flex';
     dialogInput.showModal();
 })
+//Executes functions on close
 dialogInput.addEventListener('close',() =>{
     dialogInput.close(consoleLog.innerText = 'No info');
     dialogInput.style.display = 'none';
 })
-/*closeButton.addEventListener('click', )*/
