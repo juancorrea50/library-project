@@ -11,9 +11,9 @@ body{
     height: 100%;
     width: 100%;
 }
-.button-container{
+.top-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
     height: 25vh;
@@ -21,10 +21,17 @@ body{
     justify-content: center;
     gap: 20px;
 }
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
 #book-input{
     display: flex;
     flex-direction: column;
-    top: 5vh;
+    top: 2vh;
 }
 .book-container{
     display: flex;

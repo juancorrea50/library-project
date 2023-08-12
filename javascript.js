@@ -1,4 +1,4 @@
-//nodes
+//Variables, nodes, and default styling
 const newBookButton = document.querySelector('.new-book');
 const submitButton = document.querySelector('#create-book');
 const consoleLog = document.querySelector('.console-log');
@@ -9,9 +9,12 @@ let titleCall = document.getElementById('title-input').value;
 let numPageCall = document.getElementById('num-pages').value;
 //isRead variable entered into submit button book creation
 let isReadVar = false;
-
+//Library Array
+let myLibrary = [];
 //default the form to have no display style
-document.getElementById('book-input').style.display = 'none'
+const dialogInput = document.getElementById('book-input');
+dialogInput.style.display = 'none';
+const closeButton = document.querySelector('.close-button');
 
 //checks value of isread to assign variable
 function assignIsRead(){
@@ -22,12 +25,6 @@ function assignIsRead(){
         isReadVar = false;
     }
 }
-console.log(isReadVar);
-
-
-
-//Library Array
-let myLibrary = [];
 
 //Object Constructor for book objects
 function book(author, title, numPages, isRead) {
@@ -39,21 +36,21 @@ function book(author, title, numPages, isRead) {
 
 //Book object function to add to library array
 function addBookToLibrary(obj){
-    //Retrieve information from form
-    
-
-
+    //Take input object and push to library array
     myLibrary.push(obj);
     console.log(myLibrary);
 
+    //Create divs for each display of keys from the object
     const containerDiv = document.createElement('div');
     const authorDiv = document.createElement('div');
     const titleDiv = document.createElement('div');
     const numPagesDiv = document.createElement('div');
     const isReadDiv = document.createElement('div');
+    const buttonDiv = document.createElement('div');
     const isReadButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
 
-    //container for text divs styling
+    //Styling for container div 
     containerDiv.style.display ='flex';
     containerDiv.style.flexDirection = 'column';
     containerDiv.style.padding = '1px'
@@ -62,45 +59,37 @@ function addBookToLibrary(obj){
     containerDiv.style.justifyContent = 'space-around';
     containerDiv.style.border = '1px solid blue';
     isReadButton.style.width = 'auto';
-    //Text for isreadbutton
+    //Styling for button container
+    buttonDiv.style.display = 'flex';
+    buttonDiv.style.gap = '40px';
+    buttonDiv.style.alignItems = 'center';
+    buttonDiv.style.justifyContent = 'center';
+    //Text for buttons
     isReadButton.innerText = 'Read';
+    deleteButton.innerText = 'Delete';
 
     for(let i=0; i< myLibrary.length; i++){
-        //text divs
+        //Puts text and information from object into the text divs
         authorDiv.innerText =  `Author: \n ${myLibrary[i].author}`;
         titleDiv.innerText = `Title: \n ${myLibrary[i].title}`;
         numPagesDiv.innerText = `Num. of Pages: \n ${myLibrary[i].numPages}`;
         isReadDiv.innerText = `Have Read?: \n ${myLibrary[i].isRead ? 'Yes' : 'No'} `;
 
-        //Append for container and text divs
+        //Append children for container and text divs
         containerDiv.appendChild(authorDiv);
         containerDiv.appendChild(titleDiv);
         containerDiv.appendChild(numPagesDiv);
         containerDiv.appendChild(isReadDiv);
         bookContainer.appendChild(containerDiv);
-        containerDiv.appendChild(isReadButton);
+        containerDiv.appendChild(buttonDiv);
+        buttonDiv.appendChild(isReadButton);
+        buttonDiv.appendChild(deleteButton);
     }
 }
-
-
-
-//test objects
-const hp = new book('JK Rowling', 'Hary P and Stone', 200, true);
-const pj = new book('Rick Riordan', 'Percy Jackson', 250, false);
-const gg = new book('Some Dude', 'Greate Gatsby', 500, false);
-//Testing confirms each iteration of the function for the book objects creates a new book div and using ...args on the function creates only one
-//Test complete refer to submit button to see book on submit
-
-
-
-
-
-
-
-
-
-
-
+//Remove book from library
+function removeBookfromLibrary(event){
+    console.log(event);
+}
 
 //Function to input submit button
 function submitInfo(event){
@@ -110,21 +99,21 @@ function submitInfo(event){
     console.log(newBook);
     
     addBookToLibrary(newBook);
-    consoleLog.innerText = 'preventDefault activated. Console updated.';
+    consoleLog.innerText = 'preventDefault activated. book pushed.';
 }
 
 
 
-//Open the form to fill out new book object in html doc
-function inputBookInfo(){
-    
-    if(document.getElementById('book-input').style.display == 'none'){
-        document.getElementById('book-input').style.display = 'flex';
-    } else {
-        document.getElementById('book-input').style.display = 'none';
-    }
-}
+
 
 submitButton.addEventListener('click', submitInfo);
 //click listener to pop form into html doc
-newBookButton.addEventListener('click', inputBookInfo);
+newBookButton.addEventListener('click', ()=> {
+    dialogInput.style.display = 'flex';
+    dialogInput.showModal();
+})
+dialogInput.addEventListener('close',() =>{
+    dialogInput.close(consoleLog.innerText = 'No info');
+    dialogInput.style.display = 'none';
+})
+/*closeButton.addEventListener('click', )*/

@@ -8,12 +8,12 @@
     <title>Library</title>
 </head>
 <body>
-    <div class="button-container">
-        <button id="create-book" form="bookForm" type="submit" >SUBMIT</button>
+    <div class="top-container">
         <button class="new-book">NEW BOOK</button>
-    </div>
-    <div class="book-container">
-        
+
+        <div class="console-log">
+            <!--Console log writing div-->
+        </div>
     </div>
     <dialog id="book-input">
         <p>Enter a new book to add to the library!</p>
@@ -33,14 +33,20 @@
                 <input type="radio" value="no" name="has-read">
                 <label>No</label>
             </div>
+            <div class="button-container">
+                <button class="close-button" formmethod="dialog">Close</button>
+                <button id="create-book" form="bookForm" type="submit" >SUBMIT</button>
+            </div>
 
         </form> 
     </dialog>
+    <div class="book-container">
+        
+    </div>
+
 
  
 
-        <div class="console-log">
-            <!--Console log writing div-->
-        </div>
+
 </body>
 </html>
