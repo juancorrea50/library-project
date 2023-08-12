@@ -39,7 +39,6 @@ body{
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1vw;
-    border: 1px dotted blue;
     height: auto;
     width: auto;
 }

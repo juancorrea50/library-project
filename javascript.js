@@ -121,25 +121,6 @@ function submitInfo(event){
 
 //Button Clicks
 
-/*
-//Adds books to library physically and on array
-submitButton.addEventListener('click', (e) =>{
-
-});
-
-//Bandaid solution to open dialog modal box
-newBookButton.addEventListener('click', ()=> {
-    dialogInput.style.display = 'flex';
-    dialogInput.showModal();
-})
-//Bandaid solution to closing dialog box
-dialogInput.addEventListener('close',() =>{
-    dialogInput.style.display = 'none';
-    dialogInput.returnValue
-    consoleLog.innerText = 'No Info';
-
-})
-*/
 //Show modal form on click
 newBookButton.addEventListener('click', () => {
     dialogInput.showModal();
