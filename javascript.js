@@ -3,10 +3,7 @@ const newBookButton = document.querySelector('.new-book');
 const submitButton = document.querySelector('#create-book');
 const consoleLog = document.querySelector('.console-log');
 const bookContainer = document.querySelector('.book-container');
-//Form variables
-let authorCall = document.getElementById('author-input').value;
-let titleCall = document.getElementById('title-input').value;
-let numPageCall = document.getElementById('num-pages').value;
+
 //isRead variable entered into submit button book creation and delete/isRead buttons
 let isReadVar = false;
 
@@ -21,9 +18,9 @@ const closeButton = document.querySelector('.close-button');
 function assignIsRead(){
     let isReadRadio = document.querySelector('input[name ="has-read"]:checked');
     if(isReadRadio.value == 'yes'){
-        isReadVar = true;
+       return isReadVar = true;
     } else {
-        isReadVar = false;
+       return isReadVar = false;
     }
 }
 
@@ -41,7 +38,7 @@ function addBookToLibrary(obj){
     myLibrary.push(obj);
     console.log(myLibrary);
 
-    //Create divs for each display of keys from the object and the buttons to remove and change isRead
+    //Create divs for each display of keys from the object and the buttons to remove books and change isRead
     const containerDiv = document.createElement('div');
     const authorDiv = document.createElement('div');
     const titleDiv = document.createElement('div');
@@ -113,20 +110,27 @@ function removeBookfromLibrary(event){
 
 //Function to input submit button
 function submitInfo(event){
-    assignIsRead();
-    const newBook = new book(authorCall,titleCall,numPageCall,isReadVar);
+    //Form variables
+    let authorCall = document.getElementById('author-input').value;
+    let titleCall = document.getElementById('title-input').value;
+    let numPageCall = document.querySelector('input[type="number"]').value;
+    //Prevents submitting the form
     event.preventDefault();
+
+    const newBook = new book(authorCall,titleCall,numPageCall,assignIsRead());
     console.log(newBook);
     
     addBookToLibrary(newBook);
-    consoleLog.innerText = 'preventDefault activated. book pushed.';
 }
 
 
 
 
 //Adds books to library physically and on array
-submitButton.addEventListener('click', submitInfo);
+submitButton.addEventListener('click', (e) =>{
+    submitInfo(e);
+    dialogInput.close(consoleLog.innerText = 'book pushed');
+});
 
 //click listener to pop form into html doc
 newBookButton.addEventListener('click', ()=> {
