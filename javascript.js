@@ -12,7 +12,7 @@ let myLibrary = [];
 //default the form to have no display style
 const dialogInput = document.getElementById('book-input');
 const closeButton = document.querySelector('.close-button');
-dialogInput.style.display = 'none';
+//dialogInput.style.display = 'none';
 
 //Object Constructor for book objects
 function book(author, title, numPages, isRead) {
@@ -89,8 +89,6 @@ function addBookToLibrary(obj){
     isReadButton.addEventListener('click', () => {
         isReadVar == true ? isReadVar = false : isReadVar = true;
         isReadDiv.innerText = `Have Read?: \n ${isReadVar ? 'Yes' : 'No'} `;
-        console.log('switchRead attempted');
-        console.log('isReadVar value: ' + isReadVar);
     });
 }
 
@@ -110,9 +108,9 @@ function submitInfo(event){
     let authorCall = document.getElementById('author-input').value;
     let titleCall = document.getElementById('title-input').value;
     let numPageCall = document.querySelector('input[type="number"]').value;
-
     //Prevents submitting the form
     event.preventDefault();
+
     //Creates new book and logs the book object
     const newBook = new book(authorCall,titleCall,numPageCall,assignIsRead());
     console.log(newBook);
@@ -126,12 +124,7 @@ function submitInfo(event){
 /*
 //Adds books to library physically and on array
 submitButton.addEventListener('click', (e) =>{
-    //e is passed through to prevent default submit behaviour
-    submitInfo(e);
-    //closes dialog box and makes the bottom div read as follows
-    if(e.target.type == 'submit'){
-        dialogInput.close(consoleLog.innerText = 'book pushed');
-    }
+
 });
 
 //Bandaid solution to open dialog modal box
@@ -147,4 +140,22 @@ dialogInput.addEventListener('close',() =>{
 
 })
 */
+//Show modal form on click
+newBookButton.addEventListener('click', () => {
+    dialogInput.showModal();
+})
+//Submit information
+submitButton.addEventListener('click', (e) =>{
+    //e is passed through to prevent default submit behaviour
+
+    //closes dialog box and makes the bottom div read as follows
+    dialogInput.close(submitInfo(e));
+})
+dialogInput.addEventListener('close', () => {
+    console.log(dialogInput.returnValue);
+    consoleLog.innerText = 
+    dialogInput.returnValue == 'close'
+    ? 'No info' : 'Book Pushed';
+    dialogInput.returnValue = '';
+})
 

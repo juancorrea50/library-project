@@ -28,7 +28,7 @@ body{
     align-items: center;
     gap: 50px;
 }
-#book-input{
+#book-input[open]{
     display: flex;
     flex-direction: column;
     top: 2vh;
