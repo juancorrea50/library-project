@@ -8,15 +8,16 @@
     <title>Library</title>
 </head>
 <body>
-    <div class="book-container">
-        
-    </div>
     <div class="button-container">
         <button id="create-book" form="bookForm" type="submit" >SUBMIT</button>
         <button class="new-book">NEW BOOK</button>
     </div>
-    <div id="book-input">
-        <form action="" id="book-form">
+    <div class="book-container">
+        
+    </div>
+    <dialog id="book-input">
+        <p>Enter a new book to add to the library!</p>
+        <form method="dialog" id="book-form">
             <label for="author-input">Author</label>
             <input type="text" id="author-input" name="author-input">
             <label for="title-input">Title:</label>
@@ -34,7 +35,7 @@
             </div>
 
         </form> 
-    </div>
+    </dialog>
 
  
 
