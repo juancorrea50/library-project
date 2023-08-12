@@ -11,18 +11,8 @@ let isReadVar = false;
 let myLibrary = [];
 //default the form to have no display style
 const dialogInput = document.getElementById('book-input');
-dialogInput.style.display = 'none';
 const closeButton = document.querySelector('.close-button');
-
-//checks value of isread to assign variable
-function assignIsRead(){
-    let isReadRadio = document.querySelector('input[name ="has-read"]:checked');
-    if(isReadRadio.value == 'yes'){
-       return isReadVar = true;
-    } else {
-       return isReadVar = false;
-    }
-}
+dialogInput.style.display = 'none';
 
 //Object Constructor for book objects
 function book(author, title, numPages, isRead) {
@@ -31,7 +21,6 @@ function book(author, title, numPages, isRead) {
     this.numPages = numPages;
     this.isRead = isRead;
 }
-
 //Book object function to add to library array
 function addBookToLibrary(obj){
     //Take input object and push to library array
@@ -68,10 +57,8 @@ function addBookToLibrary(obj){
     isReadButton.innerText = 'Read';
     deleteButton.innerText = 'Delete';
   
-    //Create div housing book information and append a number to the index in the library array
+    //Create divs housing book information and append a number to the index in the library array
     for(let i=0; i< myLibrary.length; i++){
-        //variable to assign book number in array
-        deleteButton.dataset.bookNum = i;
         //Puts text and information from object into the text divs
         authorDiv.innerText =  `Author: \n ${myLibrary[i].author}`;
         titleDiv.innerText = `Title: \n ${myLibrary[i].title}`;
@@ -87,25 +74,34 @@ function addBookToLibrary(obj){
         containerDiv.appendChild(buttonDiv);
         buttonDiv.appendChild(isReadButton);
         buttonDiv.appendChild(deleteButton);
-        console.log(deleteButton.dataset.bookNum);
     }
     
-    deleteButton.addEventListener('click', (e) => {
-        //Remove div from front end
-        bookContainer.removeChild(containerDiv);
-        //Remove book object from array
-        for(let i =0; i< myLibrary.length; i++){
-            if(deleteButton.dataset.bookNum == i){
-                myLibrary.splice(i,1);
-            }
-        }
-        console.log(myLibrary);
+    //Remove book from library
+    deleteButton.addEventListener('click', (index) => {
+        //Remove clicked container div from front end
+        bookContainer.removeChild(containerDiv);       
+        
+        //splice function here pass index as a parameter and use here for accurate deletion of array items on click and console logs the length of the array
+        myLibrary.splice(index, 1);
+        console.log('Library array length: ' + myLibrary.length);
     })
+    //Switch isRead Variable
+    isReadButton.addEventListener('click', () => {
+        isReadVar == true ? isReadVar = false : isReadVar = true;
+        isReadDiv.innerText = `Have Read?: \n ${isReadVar ? 'Yes' : 'No'} `;
+        console.log('switchRead attempted');
+        console.log('isReadVar value: ' + isReadVar);
+    });
 }
 
-//Remove book from library
-function removeBookfromLibrary(event){
-    console.log(event);
+//checks value of isread to assign variable
+function assignIsRead(){
+    let isReadRadio = document.querySelector('input[name ="has-read"]:checked');
+    if(isReadRadio.value == 'yes'){
+       return isReadVar = true;
+    } else {
+       return isReadVar = false;
+    }
 }
 
 //Function to input submit button
@@ -114,31 +110,41 @@ function submitInfo(event){
     let authorCall = document.getElementById('author-input').value;
     let titleCall = document.getElementById('title-input').value;
     let numPageCall = document.querySelector('input[type="number"]').value;
+
     //Prevents submitting the form
     event.preventDefault();
-
+    //Creates new book and logs the book object
     const newBook = new book(authorCall,titleCall,numPageCall,assignIsRead());
     console.log(newBook);
-    
+    //Activates function to push into myLibrary array
     addBookToLibrary(newBook);
 }
 
 
+//Button Clicks
 
-
+/*
 //Adds books to library physically and on array
 submitButton.addEventListener('click', (e) =>{
+    //e is passed through to prevent default submit behaviour
     submitInfo(e);
-    dialogInput.close(consoleLog.innerText = 'book pushed');
+    //closes dialog box and makes the bottom div read as follows
+    if(e.target.type == 'submit'){
+        dialogInput.close(consoleLog.innerText = 'book pushed');
+    }
 });
 
-//click listener to pop form into html doc
+//Bandaid solution to open dialog modal box
 newBookButton.addEventListener('click', ()=> {
     dialogInput.style.display = 'flex';
     dialogInput.showModal();
 })
-//Executes functions on close
+//Bandaid solution to closing dialog box
 dialogInput.addEventListener('close',() =>{
-    dialogInput.close(consoleLog.innerText = 'No info');
     dialogInput.style.display = 'none';
+    dialogInput.returnValue
+    consoleLog.innerText = 'No Info';
+
 })
+*/
+

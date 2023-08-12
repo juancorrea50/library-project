@@ -50,3 +50,9 @@ form{
     display: flex;
     flex-direction: column;
 }
+.console-log{
+    display: flex;
+    place-content: center;
+    height: 50px;
+    width: 100px;
+}
