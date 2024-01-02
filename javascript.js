@@ -15,11 +15,38 @@ const closeButton = document.querySelector('.close-button');
 //dialogInput.style.display = 'none';
 
 //Object Constructor for book objects
-function book(author, title, numPages, isRead) {
-    this.author = author;
-    this.title = title;
-    this.numPages = numPages;
-    this.isRead = isRead;
+class book {
+    constructor(author, title, numPages, isRead) {
+        this.author = author;
+        this.title = title;
+        this.numPages = numPages;
+        this.isRead = isRead;
+    }
+    //Setters and getters
+    get getAuthor(){
+        return this.author;
+    }
+    set setAuthor(value){
+        this.author = value;
+    }
+    get getTitle(){
+        return this.title;
+    }
+    set setTitle(value){
+        this.title = value;
+    }
+    get getNumPages(){
+        return this.numPages;
+    }
+    set setNumPages(value){
+        this.numPages = value;
+    }
+    get getIsRead(){
+        return this.isRead;
+    }
+    set setIsRead(value){
+        this.isRead = value;
+    }
 }
 //Book object function to add to library array
 function addBookToLibrary(obj){
@@ -60,10 +87,10 @@ function addBookToLibrary(obj){
     //Create divs housing book information and append a number to the index in the library array
     for(let i=0; i< myLibrary.length; i++){
         //Puts text and information from object into the text divs
-        authorDiv.innerText =  `Author: \n ${myLibrary[i].author}`;
-        titleDiv.innerText = `Title: \n ${myLibrary[i].title}`;
-        numPagesDiv.innerText = `Num. of Pages: \n ${myLibrary[i].numPages}`;
-        isReadDiv.innerText = `Have Read?: \n ${myLibrary[i].isRead ? 'Yes' : 'No'} `;
+        authorDiv.innerText =  `Author: \n ${myLibrary[i].getAuthor}`;
+        titleDiv.innerText = `Title: \n ${myLibrary[i].getTitle}`;
+        numPagesDiv.innerText = `Num. of Pages: \n ${myLibrary[i].getNumPages}`;
+        isReadDiv.innerText = `Have Read?: \n ${myLibrary[i].getIsRead ? 'Yes' : 'No'} `;
 
         //Append children for container and text divs
         containerDiv.appendChild(authorDiv);
