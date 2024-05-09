@@ -1,7 +1,6 @@
 //Variables, nodes, and default styling
 const newBookButton = document.querySelector('.new-book');
 const submitButton = document.querySelector('#create-book');
-const consoleLog = document.querySelector('.console-log');
 const bookContainer = document.querySelector('.book-container');
 
 //isRead variable entered into submit button book creation and delete/isRead buttons
@@ -161,9 +160,6 @@ submitButton.addEventListener('click', (e) =>{
 })
 dialogInput.addEventListener('close', () => {
     console.log(dialogInput.returnValue);
-    consoleLog.innerText = 
-    dialogInput.returnValue == 'close'
-    ? 'No info' : 'Book Pushed';
     dialogInput.returnValue = '';
 })
 
