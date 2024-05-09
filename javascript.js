@@ -68,7 +68,7 @@ function addBookToLibrary(obj){
     containerDiv.style.flexDirection = 'column';
     containerDiv.style.padding = '1px'
     containerDiv.style.width = '15vw';
-    containerDiv.style.height = 'auto';
+    containerDiv.style.height = '15vw';
     containerDiv.style.justifyContent = 'space-around';
     containerDiv.style.border = '1px solid blue';
     isReadButton.style.width = 'auto';
@@ -86,10 +86,10 @@ function addBookToLibrary(obj){
     //Create divs housing book information and append a number to the index in the library array
     for(let i=0; i< myLibrary.length; i++){
         //Puts text and information from object into the text divs
-        authorDiv.innerText =  `Author: \n ${myLibrary[i].getAuthor}`;
-        titleDiv.innerText = `Title: \n ${myLibrary[i].getTitle}`;
-        numPagesDiv.innerText = `Num. of Pages: \n ${myLibrary[i].getNumPages}`;
-        isReadDiv.innerText = `Have Read?: \n ${myLibrary[i].getIsRead ? 'Yes' : 'No'} `;
+        authorDiv.innerText =  `Author: \t \t ${myLibrary[i].getAuthor}`;
+        titleDiv.innerText = `Title: \t \t ${myLibrary[i].getTitle}`;
+        numPagesDiv.innerText = `Num. of Pages: \t \t ${myLibrary[i].getNumPages}`;
+        isReadDiv.innerText = `Have Read?: \t \t ${myLibrary[i].getIsRead ? 'Yes' : 'No'}`;
 
         //Append children for container and text divs
         containerDiv.appendChild(authorDiv);
@@ -114,7 +114,7 @@ function addBookToLibrary(obj){
     //Switch isRead Variable
     isReadButton.addEventListener('click', () => {
         isReadVar == true ? isReadVar = false : isReadVar = true;
-        isReadDiv.innerText = `Have Read?: \n ${isReadVar ? 'Yes' : 'No'} `;
+        isReadDiv.innerText = `Have Read?: ${isReadVar ? 'Yes' : 'No'} `;
     });
 }
 
